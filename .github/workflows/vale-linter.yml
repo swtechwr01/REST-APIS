@@ -17,8 +17,10 @@ jobs:
 
       - name: Install Vale
         run: |
+          # Download the Vale Windows release and extract it
           Invoke-WebRequest -Uri https://github.com/errata-ai/vale/releases/download/v2.9.0/vale_2.9.0_Windows_x86_64.zip -OutFile vale.zip
           Expand-Archive -Path vale.zip -DestinationPath C:\vale
+          # Add Vale to PATH to make it globally accessible
           [System.Environment]::SetEnvironmentVariable('PATH', $env:PATH + ';C:\vale', [System.EnvironmentVariableTarget]::Machine)
           vale --version # Verify Vale installation
 
